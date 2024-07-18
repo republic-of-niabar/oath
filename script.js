@@ -1,4 +1,14 @@
 $(document).ready(function() {
+    function updateOathText() {
+        const name = $('#name').val();
+        if ($('#oathWithGod').is(':checked')) {
+            $('#oathText').text(`By clicking this checkmark, I, ${name}, do solemnly swear that I will support and defend the Constitution of the Republic of Niabar and obey laws and legal orders that are ordered upon me and/or other citizens by the authorities of the Republic, and I hereby declare that I recognize and accept the supreme authority of Niabar and will maintain true faith and allegiance thereto; that I will be loyal to the Republic of Niabar, promote all that will advance it and oppose all that may harm it, and that I will uphold and respect the Constitution and laws of the Republic, so help me God. My clicking this checkmark is equally as powerful as a signature on paper.`);
+        } else if ($('#oathWithoutGod').is(':checked')) {
+            $('#oathText').text(`By clicking this checkmark, I, ${name}, do solemnly declare and affirm that I will support and defend the Constitution of the Republic of Niabar and obey laws and legal orders that are ordered upon me and/or other citizens by the authorities of the Republic, and will maintain true faith and allegiance thereto; that I will be loyal to the Republic of Niabar, promote all that will advance it and oppose all that may harm it, and that I will uphold and respect the Constitution and laws of the Republic. My clicking this checkmark is equally as powerful as a signature on paper.`);
+        }
+        $('#oathTextGroup').removeClass('d-none');
+    }
+
     $('input[name="contactMethod"]').on('change', function() {
         if ($('#contactDiscord').is(':checked')) {
             $('#discordUsernameGroup').removeClass('d-none');
@@ -13,17 +23,9 @@ $(document).ready(function() {
         }
     });
 
-    $('input[name="oathType"]').on('change', function() {
-        const name = $('#name').val();
-        if ($('#oathWithGod').is(':checked')) {
-            $('#oathText').text(`By clicking this checkmark, I, ${name}, do solemnly swear that I will support and defend the Constitution of the Republic of Niabar and obey laws and legal orders that are ordered upon me and/or other citizens by the authorities of the Republic, and I hereby declare that I recognize and accept the supreme authority of Niabar and will maintain true faith and allegiance thereto; that I will be loyal to the Republic of Niabar, promote all that will advance it and oppose all that may harm it, and that I will uphold and respect the Constitution and laws of the Republic, so help me God. My clicking this checkmark is equally as powerful as a signature on paper.`);
-            $('#oathCheckboxLabel').text('I agree');
-        } else if ($('#oathWithoutGod').is(':checked')) {
-            $('#oathText').text(`By clicking this checkmark, I, ${name}, do solemnly declare and affirm that I will support and defend the Constitution of the Republic of Niabar and obey laws and legal orders that are ordered upon me and/or other citizens by the authorities of the Republic, and will maintain true faith and allegiance thereto; that I will be loyal to the Republic of Niabar, promote all that will advance it and oppose all that may harm it, and that I will uphold and respect the Constitution and laws of the Republic. My clicking this checkmark is equally as powerful as a signature on paper.`);
-            $('#oathCheckboxLabel').text('I agree');
-        }
-        $('#oathTextGroup').removeClass('d-none');
-    });
+    $('input[name="oathType"]').on('change', updateOathText);
+
+    $('#name').on('input', updateOathText);
 
     $('#oathForm').on('submit', function(event) {
         event.preventDefault();

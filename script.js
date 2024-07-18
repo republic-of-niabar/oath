@@ -37,16 +37,17 @@ $(document).ready(function() {
         const oathText = $('#oathText').text();
 
         $.ajax({
-            url: 'send_email.php',
+            url: 'https://jyzdngl2lni7wnqggc4i65soa40upxck.lambda-url.us-east-1.on.aws/',
             type: 'POST',
-            data: {
+            contentType: 'application/json',
+            data: JSON.stringify({
                 name: name,
                 dob: dob,
                 contactMethod: contactMethod,
                 contactDetail: contactDetail,
                 oathType: oathType,
                 oathText: oathText
-            },
+            }),
             success: function(response) {
                 alert('Oath submitted successfully.');
             },

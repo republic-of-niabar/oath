@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $oathType = $_POST['oathType'];
     $oathText = $_POST['oathText'];
 
-    $to = 'government.of.niabar+oath@gmail.com';
+    $to = 'government.of.niabar@gmail.com';
     $subject = 'New Citizenship Oath Submission';
     $message = "Name: $name\nDOB: $dob\nContact Method: $contactMethod\nContact Detail: $contactDetail\nOath Type: $oathType\n\nOath Text:\n$oathText";
     $headers = "From: noreply@niabar.org";

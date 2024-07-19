@@ -51,8 +51,29 @@ $(document).ready(function() {
             success: function(response) {
                 alert('Oath submitted successfully.');
             },
-            error: function(error) {
-                alert('There was an error submitting the oath.');
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error('Error details:', {
+                    jqXHR: jqXHR,
+                    textStatus: textStatus,
+                    errorThrown: errorThrown
+                });
+                let errorMessage = 'There was an error submitting the oath.';
+                if (jqXHR.status === 0) {
+                    errorMessage += ' Not connected. Verify Network.';
+                } else if (jqXHR.status == 404) {
+                    errorMessage += ' Requested page not found [404].';
+                } else if (jqXHR.status == 500) {
+                    errorMessage += ' Internal Server Error [500].';
+                } else if (textStatus === 'parsererror') {
+                    errorMessage += ' Requested JSON parse failed.';
+                } else if (textStatus === 'timeout') {
+                    errorMessage += ' Time out error.';
+                } else if (textStatus === 'abort') {
+                    errorMessage += ' Ajax request aborted.';
+                } else {
+                    errorMessage += ' Uncaught Error: ' + jqXHR.responseText;
+                }
+                alert(errorMessage);
             }
         });
     });

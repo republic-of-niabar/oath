@@ -7,9 +7,20 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script>
         async function testApi() {
+            const payload = {
+                name: 'Sample Bottomtext',
+                dob: '2004-03-13',
+                contact_preference: 'discord',
+                contact_address: 'optimistic.panda2.0'
+            };
+
             try {
-                const response = await fetch('http://localhost:5000/submit?name=Sample%20Bottomtext&dob=2004-03-13&contact_preference=discord&contact_address=optimisticpanda2', {
-                    method: 'POST'
+                const response = await fetch('http://localhost:5000/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
                 });
 
                 const statusDescription = {

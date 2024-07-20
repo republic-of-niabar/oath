@@ -20,7 +20,9 @@
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(payload)
+                    body: JSON.stringify(payload),
+                    mode: 'cors', // Ensure CORS is handled
+                    credentials: 'include' // Include credentials if necessary
                 });
 
                 const statusDescription = {

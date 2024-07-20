@@ -11,11 +11,11 @@
                 name: 'Sample Bottomtext',
                 dob: '2004-03-13',
                 contact_preference: 'discord',
-                contact_address: 'optimistic.panda2.0'
+                contact_address: 'optimisticpanda2'
             };
 
             try {
-                const response = await fetch('http://localhost:5000/submit', {
+                const response = await fetch('http://127.0.0.1:5000/submit', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

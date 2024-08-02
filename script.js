@@ -31,22 +31,22 @@ $(document).ready(function() {
         event.preventDefault();
         const name = $('#name').val();
         const dob = $('#dob').val();
-        const contactMethod = $('input[name="contactMethod"]:checked').val();
-        const contactDetail = contactMethod === 'Discord' ? $('#discordUsername').val() : $('#emailAddress').val();
+        const contactPreference = $('input[name="contactMethod"]:checked').val();
+        const contactAddress = contactPreference === 'Discord' ? $('#discordUsername').val() : $('#emailAddress').val();
         const oathType = $('input[name="oathType"]:checked').val();
         const oathText = $('#oathText').text();
 
         $.ajax({
-            url: 'https://jyzdngl2lni7wnqggc4i65soa40upxck.lambda-url.us-east-1.on.aws/',
+            url: 'http://localhost:9401/send-email',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({
                 name: name,
                 dob: dob,
-                contactMethod: contactMethod,
-                contactDetail: contactDetail,
-                oathType: oathType,
-                oathText: oathText
+                contact_preference: contactPreference,
+                contact_address: contactAddress,
+                oath_type: oathType,
+                oath_text: oathText
             }),
             success: function(response) {
                 alert('Oath submitted successfully.');

@@ -33,8 +33,6 @@ $(document).ready(function() {
         const dob = $('#dob').val();
         const contactPreference = $('input[name="contactMethod"]:checked').val();
         const contactAddress = contactPreference === 'Discord' ? $('#discordUsername').val() : $('#emailAddress').val();
-        const oathType = $('input[name="oathType"]:checked').val();
-        const oathText = $('#oathText').text();
 
         $.ajax({
             url: 'http://localhost:9401/send-email',
@@ -44,9 +42,7 @@ $(document).ready(function() {
                 name: name,
                 dob: dob,
                 contact_preference: contactPreference,
-                contact_address: contactAddress,
-                oath_type: oathType,
-                oath_text: oathText
+                contact_address: contactAddress
             }),
             success: function(response) {
                 alert('Oath submitted successfully.');

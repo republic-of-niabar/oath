@@ -54,7 +54,7 @@ $(document).ready(function() {
                     errorThrown: errorThrown
                 });
                 let errorMessage = 'There was an error submitting the oath.';
-                if (jqXHR.status == 404) {
+                if (jqXHR.status === 404) {
                     errorMessage += ' Requested page not found [404].';
                 } else if (jqXHR.status == 500) {
                     errorMessage += ' Internal Server Error [500].';

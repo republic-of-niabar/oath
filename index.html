@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Oath</title>
+  <link
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <div class="container">
+    <h1 class="mt-5">Republic of Niabar Citizenship Oath</h1>
+    <form id="oathForm">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" id="name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="dob">Date of Birth:</label>
+        <input type="text" class="form-control" id="dob" required>
+      </div>
+
+      <div class="form-group">
+        <label>Preferred Contact Method:</label><br>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="contactMethod" id="contactDiscord" value="Discord" required>
+          <label class="form-check-label" for="contactDiscord">Discord</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="contactMethod" id="contactEmail" value="Email" required>
+          <label class="form-check-label" for="contactEmail">Email</label>
+        </div>
+      </div>
+
+      <div class="form-group d-none" id="discordUsernameGroup">
+        <label for="discordUsername">Discord Username:</label>
+        <input type="text" class="form-control" id="discordUsername">
+      </div>
+      <div class="form-group d-none" id="emailAddressGroup">
+        <label for="emailAddress">Email Address:</label>
+        <input type="email" class="form-control" id="emailAddress">
+      </div>
+
+      <div class="form-group">
+        <label>Oath of Citizenship:</label><br>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="oathType" id="oathWithGod" value="With God" required>
+          <label class="form-check-label" for="oathWithGod">With God</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="oathType" id="oathWithoutGod" value="Without God" required>
+          <label class="form-check-label" for="oathWithoutGod">Without God</label>
+        </div>
+      </div>
+
+      <div class="form-group d-none" id="oathTextGroup">
+        <p id="oathText"></p>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="oathCheckbox" required>
+          <label class="form-check-label" for="oathCheckbox" id="oathCheckboxLabel"></label>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="/script.js"></script>
+</body>
+</html>

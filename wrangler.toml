@@ -1,0 +1,6 @@
+name = "niabar-oath"
+compatibility_date = "2025-06-16"
+
+[build]
+  functions = "./functions"
+  upload = { format = "modules" }

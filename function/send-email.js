@@ -1,17 +1,43 @@
 export async function onRequest(context) {
   const { request, env } = context;
-  if (request.method !== 'POST') {
-    return new Response('Method Not Allowed', { status: 405 });
+  const origin = request.headers.get('Origin') || '*';
+
+  // common CORS headers for all responses:
+  const CORS_HEADERS = {
+    'Access-Control-Allow-Origin':      origin,
+    'Access-Control-Allow-Methods':     'POST, OPTIONS',
+    'Access-Control-Allow-Headers':     'Content-Type',
+    'Access-Control-Allow-Credentials': 'true',
+  };
+
+  // 1) Preflight
+  if (request.method === 'OPTIONS') {
+    return new Response(null, {
+      status: 204,
+      headers: CORS_HEADERS
+    });
   }
 
+  // 2) Only allow POST
+  if (request.method !== 'POST') {
+    return new Response('Method Not Allowed', {
+      status: 405,
+      headers: CORS_HEADERS
+    });
+  }
+
+  // 3) Parse JSON
   let data;
   try {
     data = await request.json();
   } catch {
-    return new Response(
-      JSON.stringify({ message: 'Invalid JSON' }),
-      { status: 400, headers: { 'Content-Type': 'application/json' } }
-    );
+    return new Response(JSON.stringify({ message: 'Invalid JSON' }), {
+      status: 400,
+      headers: { 
+        ...CORS_HEADERS, 
+        'Content-Type': 'application/json' 
+      }
+    });
   }
 
   const {
@@ -21,13 +47,16 @@ export async function onRequest(context) {
   } = data;
 
   if (!name || !dob || !contactAddress || !oathText) {
-    return new Response(
-      JSON.stringify({ message: 'Missing fields' }),
-      { status: 400, headers: { 'Content-Type': 'application/json' } }
-    );
+    return new Response(JSON.stringify({ message: 'Missing fields' }), {
+      status: 400,
+      headers: { 
+        ...CORS_HEADERS, 
+        'Content-Type': 'application/json' 
+      }
+    });
   }
 
-  // these are your env vars—set them in Cloudflare Pages settings
+  // your env vars
   const MAILERSEND_API_KEY    = env.MAILERSEND_API_KEY;
   const MAILERSEND_FROM_EMAIL = env.MAILERSEND_FROM_EMAIL;
   const MAILERSEND_TO_EMAIL   = env.MAILERSEND_TO_EMAIL;
@@ -68,20 +97,33 @@ ${oathText}
 
     if (!resp.ok) {
       const errbody = await resp.text();
-      return new Response(
-        JSON.stringify({ message: 'MailerSend error: ' + errbody }),
-        { status: resp.status, headers: { 'Content-Type': 'application/json' } }
-      );
+      return new Response(JSON.stringify({
+        message: 'MailerSend error: ' + errbody
+      }), {
+        status: resp.status,
+        headers: { 
+          ...CORS_HEADERS, 
+          'Content-Type': 'application/json' 
+        }
+      });
     }
 
-    return new Response(
-      JSON.stringify({ ok: true }),
-      { status: 200, headers: { 'Content-Type': 'application/json' } }
-    );
+    return new Response(JSON.stringify({ ok: true }), {
+      status: 200,
+      headers: { 
+        ...CORS_HEADERS, 
+        'Content-Type': 'application/json' 
+      }
+    });
   } catch (e) {
-    return new Response(
-      JSON.stringify({ message: 'Fetch error: ' + e.message }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
-    );
+    return new Response(JSON.stringify({
+      message: 'Fetch error: ' + e.message
+    }), {
+      status: 500,
+      headers: { 
+        ...CORS_HEADERS, 
+        'Content-Type': 'application/json' 
+      }
+    });
   }
 }

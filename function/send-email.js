@@ -13,7 +13,7 @@ export async function onRequest(context) {
   // 1) Preflight
   if (request.method === 'OPTIONS') {
     return new Response(null, {
-      status: 204,
+      status: 200,
       headers: CORS_HEADERS
     });
   }

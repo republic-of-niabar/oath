@@ -64,7 +64,7 @@ export async function onRequest(context) {
   const mailPayload = {
     from: { email: MAILERSEND_FROM_EMAIL },
     to:   [{ email: MAILERSEND_TO_EMAIL }],
-    subject: "🇳🇮 Niabar Citizenship Oath Submission",
+    subject: "Niabar Citizenship Oath Submission",
     text: `
 Name: ${name}
 Date of Birth: ${dob}

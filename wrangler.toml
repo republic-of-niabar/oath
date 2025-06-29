@@ -2,5 +2,13 @@
 functions = "./functions"
 upload = { format = "modules" }
 
-[functions]
-mount_path = "/api"
+[[routes]]
+pattern = "/send-email"
+methods = ["GET", "POST", "OPTIONS"]
+type = "function"
+
+[[routes]]
+pattern = "/ping"
+methods = ["GET", "POST", "OPTIONS"]
+type = "function"
+

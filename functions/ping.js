@@ -1,3 +1,3 @@
-export async function onRequest() {
-  return new Response('pong');
-}
+[build]
+functions = "./functions"
+upload = { format = "modules" }

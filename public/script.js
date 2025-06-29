@@ -54,7 +54,7 @@ $(document).ready(function() {
     const payload = { name, dob, contactPreference, contactAddress, oathType, oathText };
 
     try {
-      const res = await fetch('/send-email', {
+      const res = await fetch('/api/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)

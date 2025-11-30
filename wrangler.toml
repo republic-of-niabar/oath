@@ -1,14 +1,8 @@
-[build]
-functions = "./functions"
-upload = { format = "modules" }
+name = "oath"
+compatibility_date = "2025-11-30"
 
-[[routes]]
-pattern = "/send-email"
-methods = ["GET", "POST", "OPTIONS"]
-type = "function"
+# Static assets for the site live in ./public (deployed via Pages).
+pages_build_output_dir = "./public"
 
-[[routes]]
-pattern = "/ping"
-methods = ["GET", "POST", "OPTIONS"]
-type = "function"
-
+# Pages Functions are discovered automatically from ./functions
+# and mapped to routes matching their filenames (e.g., /send-email).

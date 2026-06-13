@@ -9,7 +9,7 @@ pages_build_output_dir = "./public"
 
 [vars]
 SMTP_HOST = "mail.niabar.org"
-SMTP_PORT = "25"
+SMTP_PORT = "587"
 SMTP_SECURE_TRANSPORT = "starttls"
 SMTP_HELO_DOMAIN = "niabar.org"
 SMTP_FROM_EMAIL = "oath@niabar.org"

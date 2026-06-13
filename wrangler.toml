@@ -6,3 +6,11 @@ pages_build_output_dir = "./public"
 
 # Pages Functions are discovered automatically from ./functions
 # and mapped to routes matching their filenames (e.g., /send-email).
+
+[vars]
+SMTP_HOST = "mail.niabar.org"
+SMTP_PORT = "25"
+SMTP_SECURE_TRANSPORT = "starttls"
+SMTP_HELO_DOMAIN = "niabar.org"
+SMTP_FROM_EMAIL = "oath@niabar.org"
+SMTP_TO_EMAIL = "gov@niabar.org"
